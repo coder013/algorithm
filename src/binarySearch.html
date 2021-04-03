@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn about binary search</title>
+    <script type="text/javascript">
+        window.onload = function () {
+            function search() {
+                alert("Binary Search!!!");
+            }
+        
+            document.getElementById("run").addEventListener("click", search);
+        }
+    </script>
+</head>
+<body>
+    <h1>Binary Search</h1>
+    <p>Enter a number and range to run a binary search.</p>
+    <label for="number">Number : </label>
+    <input type="number" id="number" name="number" min="0"/>
+    <br>
+    <label for="from">Range : </label>
+    <input type="number" id="from" name="from" min="0"/>
+    <label for="to"> ~ </label>
+    <input type="number" id="to" name="to" min="0"/>
+    <button type="button" id="run">Run</button>
+</body>
+</html>
