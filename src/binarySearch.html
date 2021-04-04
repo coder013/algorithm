@@ -5,26 +5,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learn about binary search</title>
-    <script type="text/javascript">
-        window.onload = function () {
-            function search() {
-                alert("Binary Search!!!");
-            }
-        
-            document.getElementById("run").addEventListener("click", search);
-        }
-    </script>
 </head>
 <body>
     <h1>Binary Search</h1>
     <p>Enter a number and range to run a binary search.</p>
     <label for="number">Number : </label>
-    <input type="number" id="number" name="number" min="0"/>
+    <input type="text" id="number" name="number" min="0" onkeypress="numberValidation(event)"/>
     <br>
     <label for="from">Range : </label>
-    <input type="number" id="from" name="from" min="0"/>
+    <input type="text" id="from" name="from" min="0" onkeypress="numberValidation(event)"/>
     <label for="to"> ~ </label>
-    <input type="number" id="to" name="to" min="0"/>
-    <button type="button" id="run">Run</button>
+    <input type="text" id="to" name="to" min="0" onkeypress="numberValidation(event)"/>
+    <button type="button" id="run" onclick="search()">Run</button>
+
+    <script type="text/javascript">
+        function numberValidation(event) {
+            if (event.keyCode < 48 || event.keyCode > 57) {
+                event.returnValue = false;
+            }
+        }
+
+        function searchValidation(num, from, to) {
+            if (num == null || Number.isNaN(num)) {
+                alert("Enter a number.");
+                return false;
+            } else if ((from == null || Number.isNaN(from)) || (to == null || Number.isNaN(to))) {
+                alert("Enter a range.");
+                return false;
+            } else if (from > to) {
+                alert("Enter a correct range.");
+                return false;
+            }
+
+            return true;
+        }
+        
+        function search() {
+            var num = parseInt(document.getElementById("number").value);
+            var from = parseInt(document.getElementById("from").value);
+            var to = parseInt(document.getElementById("to").value);
+
+             if (searchValidation(num, from, to)) {
+                alert("Binary Search!!!");
+             }
+        }
+    </script>
+
 </body>
 </html>
