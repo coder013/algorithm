@@ -1,2 +1,2 @@
-# algorithm
-learn about algorithm
+📦src
+ ┗ 📜binarySearch.html
