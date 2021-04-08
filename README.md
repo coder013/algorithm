@@ -1,2 +1,3 @@
 📦src  
- ┗ 📜binarySearch.html
+ ┣ 📜binarySearch.html  
+ ┗ 📜bubbleSort.html
