@@ -8,8 +8,8 @@
 </head>
 <body>
     <h1>Binary Search</h1>
-    <b>Time complexity : O(log2n)</b>
-    <p>Enter a number and range to run a binary search.</p>
+    <b>Time complexity : O(log₂n)</b>&nbsp;<span style="font-size: small;">log₂n+1</span>
+    <p>Enter a number and range to run binary search.</p>
     <label for="number">Number : </label>
     <input type="text" id="number" name="number" min="0" onkeypress="numberValidation(event)"/>
     <br>
@@ -22,7 +22,6 @@
     <label id="value"></label>
     <br>
     <label id="count"></label>
-
     <script type="text/javascript">
         function numberValidation(event) {
             if (event.keyCode < 48 || event.keyCode > 57) {
@@ -31,13 +30,13 @@
         }
 
         function search() {
-            var num = parseInt(document.getElementById("number").value);
-            var from = parseInt(document.getElementById("from").value);
-            var to = parseInt(document.getElementById("to").value);
-            
+            let num = parseInt(document.getElementById("number").value);
+            let from = parseInt(document.getElementById("from").value);
+            let to = parseInt(document.getElementById("to").value);
+
             if (searchValidation(num, from, to)) {
                 console.log("--------------------");
-                var data = binarySearch(num, from, to);
+                let data = binarySearch(num, from, to);
 
                 if (data.value == -1) {
                     console.log("The number cannot be found in the range.");
@@ -74,13 +73,13 @@
         }
 
         function binarySearch(num, from, to) {
-            var value = -1;
-            var count = 0;
+            let value = -1;
+            let count = 0;
 
             while (from <= to) {
-                count ++;
-                var median = parseInt((from + to) / 2);
-                var ordinal = count + (count > 3 ? "th" : count == 1 ? "st" : count == 2 ? "nd" : "rd")
+                count++;
+                let median = parseInt((from + to) / 2);
+                let ordinal = count + (count > 3 ? "th" : count == 1 ? "st" : count == 2 ? "nd" : "rd");
 
                 console.log(ordinal + " try : " + from + " ~ " + to + ", " + median);
 
@@ -97,6 +96,5 @@
             return { value, count };
         }
     </script>
-
 </body>
 </html>
