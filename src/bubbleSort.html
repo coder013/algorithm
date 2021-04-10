@@ -18,32 +18,67 @@
     <br>
     <label id="count"></label>
     <script type="text/javascript">
-        var main = {
-            arrayValidation: function(array) {
-                for (let i = 0; i < array.length; i++) {
-                    var number = parseInt(array[i]);
-                    if (number == null || Number.isNaN(number)) {
-                        return false;
+        let main = {
+            numbersValidation: function(numbers) {
+                let regex = /^\d+$/;
+
+                for (let i = 0; i < numbers.length; i++) {
+                    if (regex.test(numbers[i])) {
+                        numbers[i] = parseInt(numbers[i]);
                     } else {
-                        array[i] = number;
+                        return false;
                     }
                 }
 
                 return true;
+
+                /* return numbers.every(function(num) {
+                    return regex.test(num);
+                }); */
             },
             sort: function() {
-                let numbers = document.getElementById("numbers").value;
-                if (numbers == null || numbers.length == 0) {
+                let inputNumbers = document.getElementById("numbers").value;
+                if (inputNumbers == null || inputNumbers.length == 0) {
                     alert("Enter numbers.");
                 } else {
-                    let array = numbers.replace(/\s/g, "").split(",");
+                    let numbers = inputNumbers.replace(/\s/g, "").split(",");
 
-                    if (main.arrayValidation(array)) {
-                        console.log("true");
+                    if (main.numbersValidation(numbers)) {
+                        console.log("--------------------");
+
+                        let data = main.bubbleSort(numbers);
+
+                        console.log("Sorted numbers : " + data.numbers);
+                        console.log("Number of runs : " + data.count);
+
+                        document.getElementById("value").innerHTML = "Sorted numbers : " + data.numbers;
+                        document.getElementById("count").innerHTML = "Number of runs : " + data.count;
+
+                        console.log("--------------------");
                     } else {
-                        console.log("false");
+                        alert("Enter correct numbers.");
                     }
                 }
+            },
+            bubbleSort: function(numbers) {
+                let count = 0;
+
+                for (let i = numbers.length - 1; i > 0; i--) {
+                    for (let j = 0; j < i; j++) {
+                        if (numbers[j] > numbers[j + 1]) {
+                            count++;
+
+                            let num = numbers[j];
+                            numbers[j] = numbers[j + 1];
+                            numbers[j + 1] = num;
+
+                            let ordinal = count + (count > 3 ? "th" : count == 1 ? "st" : count == 2 ? "nd" : "rd");
+                            console.log(ordinal + " sort : " + numbers[j + 1] + " => " + numbers[j] + ", [" + numbers + "]");
+                        }
+                    }
+                }
+
+                return { numbers, count };
             }
         }
     </script>
