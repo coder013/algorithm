@@ -79,7 +79,7 @@
             while (from <= to) {
                 count++;
                 let median = parseInt((from + to) / 2);
-                let ordinal = count + (count > 3 ? "th" : count == 1 ? "st" : count == 2 ? "nd" : "rd")
+                let ordinal = count + (count > 3 ? "th" : count == 1 ? "st" : count == 2 ? "nd" : "rd");
 
                 console.log(ordinal + " try : " + from + " ~ " + to + ", " + median);
 
