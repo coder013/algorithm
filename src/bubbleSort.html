@@ -49,10 +49,10 @@
                         let data = main.bubbleSort(numbers);
 
                         console.log("Sorted numbers : " + data.numbers);
-                        console.log("Number of runs : " + data.count);
+                        console.log("Number of runs : " + data.runCount);
 
                         document.getElementById("value").innerHTML = "Sorted numbers : " + data.numbers;
-                        document.getElementById("count").innerHTML = "Number of runs : " + data.count;
+                        document.getElementById("count").innerHTML = "Number of runs : " + data.runCount;
 
                         console.log("--------------------");
                     } else {
@@ -61,24 +61,28 @@
                 }
             },
             bubbleSort: function(numbers) {
-                let count = 0;
+                let passCount = 0;
+                let runCount = 0;
 
                 for (let i = numbers.length - 1; i > 0; i--) {
+                    passCount++;
+                    console.log((passCount + (passCount > 3 ? "th" : passCount == 1 ? "st" : passCount == 2 ? "nd" : "rd")) + " Pass");
+
                     for (let j = 0; j < i; j++) {
                         if (numbers[j] > numbers[j + 1]) {
-                            count++;
+                            runCount++;
+                            let beforeNumbers = numbers.slice();
 
                             let num = numbers[j];
                             numbers[j] = numbers[j + 1];
                             numbers[j + 1] = num;
 
-                            let ordinal = count + (count > 3 ? "th" : count == 1 ? "st" : count == 2 ? "nd" : "rd");
-                            console.log(ordinal + " sort : " + numbers[j + 1] + " => " + numbers[j] + ", [" + numbers + "]");
+                            console.log("[" + beforeNumbers + "] => [" + numbers + "]");
                         }
                     }
                 }
 
-                return { numbers, count };
+                return { numbers, runCount };
             }
         };
     </script>

@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learning insertion sort</title>
+    <title>Learning selection sort</title>
 </head>
 <body>
-    <h1>Insertion sort</h1>
+    <h1>Selection sort</h1>
     <b>Time complexity : O(n²)</b>&nbsp;<span style="font-size: small;">n(n-1)/2</span>
-    <p>Enter numbers to run insertion sort.</p>
+    <p>Enter numbers to run selection sort.</p>
     <label for="numbers">Numbers : </label>
     <input type="text" id="numbers" name="numbers" placeholder="1, 3, 6, 2, 7..."/>
     <button type="button" id="run" onclick="main.sort()">Run</button>
@@ -46,7 +46,7 @@
                     if (main.numbersValidation(numbers)) {
                         console.log("--------------------");
 
-                        let data = main.insertionSort(numbers);
+                        let data = main.selectionSort(numbers);
 
                         console.log("Sorted numbers : " + data.numbers);
                         console.log("Number of runs : " + data.runCount);
@@ -60,35 +60,39 @@
                     }
                 }
             },
-            insertionSort: function(numbers) {
+            selectionSort: function(numbers) {
                 let i;
                 let j;
                 let passCount = 0;
                 let runCount = 0;
 
-                for (i = 1; i < numbers.length; i++) {
+                for (i = 0; i < numbers.length - 1; i++) {
                     passCount++;
-                    console.log((passCount + (passCount > 3 ? "th" : passCount == 1 ? "st" : passCount == 2 ? "nd" : "rd")) + " Pass");
+                    let ord = (passCount + (passCount > 3 ? "th" : passCount == 1 ? "st" : passCount == 2 ? "nd" : "rd"));
+                    console.log(ord + " Pass");
 
-                    let num = numbers[i];
+                    let sNum = i;
 
-                    for (j = i - 1; j >= 0; j--) {
-                        if (numbers[j] > num) {
+                    for (j = i + 1; j < numbers.length; j++) {
+                        if (numbers[j] < numbers[sNum]) {
                             runCount++;
-                            let beforeNumbers = numbers.slice();
+                            let beforeSNum = sNum;
 
-                            numbers[j + 1] = numbers[j];
+                            sNum = j;
 
-                            numbers[j] = null;
-                            console.log("[" + beforeNumbers + "] => [" + numbers + "]");
-                        } else {
-                            break;
+                            console.log(ord + " number : " + numbers[beforeSNum] + " => " + numbers[sNum]);
                         }
                     }
 
-                    numbers[j + 1] = num;
+                    if (i != sNum) {
+                        let beforeNumbers = numbers.slice();
 
-                    console.log("Result of pass : [" + numbers + "]");
+                        let num = numbers[i];
+                        numbers[i] = numbers[sNum];
+                        numbers[sNum] = num;
+
+                        console.log("[" + beforeNumbers + "] => [" + numbers + "]");
+                    }
                 }
 
                 return { numbers, runCount };
