@@ -49,10 +49,10 @@
                         let data = main.selectionSort(numbers);
 
                         console.log("Sorted numbers : " + data.numbers);
-                        console.log("Number of runs : " + data.count);
+                        console.log("Number of runs : " + data.runCount);
 
                         document.getElementById("value").innerHTML = "Sorted numbers : " + data.numbers;
-                        document.getElementById("count").innerHTML = "Number of runs : " + data.count;
+                        document.getElementById("count").innerHTML = "Number of runs : " + data.runCount;
 
                         console.log("--------------------");
                     } else {
@@ -61,8 +61,41 @@
                 }
             },
             selectionSort: function(numbers) {
-                let count = 0;
-                return { numbers, count };
+                let i;
+                let j;
+                let passCount = 0;
+                let runCount = 0;
+
+                for (i = 0; i < numbers.length - 1; i++) {
+                    passCount++;
+                    let ord = (passCount + (passCount > 3 ? "th" : passCount == 1 ? "st" : passCount == 2 ? "nd" : "rd"));
+                    console.log(ord + " Pass");
+
+                    let sNum = i;
+
+                    for (j = i + 1; j < numbers.length; j++) {
+                        if (numbers[j] < numbers[sNum]) {
+                            runCount++;
+                            let beforeSNum = sNum;
+
+                            sNum = j;
+
+                            console.log(ord + " number : " + numbers[beforeSNum] + " => " + numbers[sNum]);
+                        }
+                    }
+
+                    if (i != sNum) {
+                        let beforeNumbers = numbers.slice();
+
+                        let num = numbers[i];
+                        numbers[i] = numbers[sNum];
+                        numbers[sNum] = num;
+
+                        console.log("[" + beforeNumbers + "] => [" + numbers + "]");
+                    }
+                }
+
+                return { numbers, runCount };
             }
         };
     </script>
