@@ -1,5 +1,6 @@
-📦src  
+📦src
  ┣ 📜binarySearch.html  
  ┣ 📜bubbleSort.html  
  ┣ 📜insertionSort.html  
- ┗ 📜selectionSort.html
+ ┣ 📜selectionSort.html  
+ ┗ 📜shellSort.html
